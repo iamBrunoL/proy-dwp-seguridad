@@ -4,7 +4,7 @@ export const renderRegistro = async (req, res) => {
   res.render("registro");
 };
 
-export const renderRegistro = async (req, res) => {
+export const renderPrincipal = async (req, res) => {
   res.render("principal");
 };
 
