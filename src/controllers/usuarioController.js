@@ -4,6 +4,9 @@ export const renderRegistro = async (req, res) => {
   res.render("registro");
 };
 
+export const renderRegistro = async (req, res) => {
+  res.render("principal");
+};
 
 export const renderUsuarios = async (req, res) => {
   const [rows] = await pool.query("SELECT * FROM usuarios");
