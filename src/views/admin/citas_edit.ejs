@@ -1,0 +1,82 @@
+<%- include("../partials/_headerAdmin", { titulo: titulo }) %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5 offset-md-3 card">
+      <div class="card-body">
+        <form action="/updateCita/<%= cita.id %>" method="POST">
+          <div>
+            <label for="form-outline">ID del usuario</label>
+          <input
+            type="number"
+            name="usuario_id"
+            value="<%= cita.usuario_id%>" readonly
+            class="form-control mb-3"
+          />
+        </div>
+
+          <div class="form-outline-mb-4">
+            <label for="form-outline">Fecha</label>
+          <input
+            type="date"
+            name="fecha"
+            value="<%= cita.fecha%>"
+            placeholder="Fecha"
+            class="form-control mb-3"
+            autofocus
+          />
+        </div>
+
+          <div class="form-outline-mb-4">
+            <label for="form-outline">Motivo</label>
+          <input
+            type="text"
+            name="motivo"
+            value="<%= cita.motivo%>"
+            placeholder="Motivo de la cita"
+            class="form-control mb-3"
+          />
+        </div>
+        
+        <div class="form-outline-mb-4">
+          <label for="form-outline">Descripción</label>
+        <input
+          type="text"
+          name="descripcion"
+          value="<%= cita.descripcion%>"
+          placeholder="Detalles de la cita"
+          class="form-control mb-3"
+        />
+      </div>
+
+        <div class="form-outline-mb-4">
+          <label for="form-outline">Lugar</label>
+        <input
+          type="text"
+          name="lugar"
+          value="<%= cita.lugar%>"
+          placeholder="Lugar"
+          class="form-control mb-3"
+        />
+      </div>
+
+      <div class="form-outline-mb-4">
+        <label for="form-outline">Estatus</label>
+      <input
+        type="text"
+        name="estatus"
+        value="<%= cita.estatus%>"
+        placeholder="Estatus"
+        class="form-control mb-3"
+      />
+    </div>
+
+
+          <button type="submit" class="btn btn-primary">Actualizar datos</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/_footer") %>
