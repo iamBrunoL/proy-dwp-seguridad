@@ -17,7 +17,7 @@ router.post("/iniciarSesion", iniciarSesion);
 router.get("/cerrarSesion", cerrarSesion);
 router.get("/registro", renderRegistro);
 router.get("/usuario", verificarAutenticacion, renderUsuarios);
-router.post("/addUsuario",  verificarAutenticacion, createUsuarios);
+router.post("/addUsuario",  createUsuarios);
 router.get("/updateUsuario/:id",  verificarAutenticacion, editUsuario);
 router.post("/updateUsuario/:id", verificarAutenticacion,  updateUsuario);
 router.get("/deleteUsuario/:id", verificarAutenticacion, deleteUsuario);
