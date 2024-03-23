@@ -1,0 +1,100 @@
+<%- include("partials/_header", { titulo: titulo }) %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <img
+        src="img/registro.jpg"
+        class="img-fluid"
+        alt="Phone image"
+      />
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <form action="/addUsuario" method="POST">
+          <div class="form-outline-mb-4">
+            <label for="form-label">Nombre</label>
+            <input
+            type="text"
+            name="nombreCompleto"
+            placeholder="Nombre completo"
+            class="form-control mb-2"
+            autofocus
+            minlength="4"
+            required
+          />
+          </div>
+          <div class="form-outline mb-4">
+          <label for="form-label">Correo</label>
+            <input
+            type="email"
+            name="email"
+            placeholder="Dirección de correo electrónico"
+            class="form-control mb-2"
+            minlength="4"
+            required
+          />
+          </div>
+          <div class="form-outline mb-4">
+            <label for="form-label">Teléfono</label>
+            <input
+            type="Tel"
+            name="telefono"
+            placeholder="Teléfono"
+            class="form-control mb-2"
+            minlength="4"
+            required
+          />
+          </div>
+
+          <div class="form-outline-mb-4">
+            <label for="form-label">Nombre de usuario</label>
+            <input
+            type="text"
+            name="username"
+            placeholder="Nombre de usuario"
+            class="form-control mb-2"
+            autofocus
+            minlength="4"
+            required
+          />
+
+          <div class="form-outline-mb-4">
+            <label for="form-label">Contraseña</label>
+            <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            class="form-control mb-2"
+            autofocus
+            minlength="4"
+            required
+          />
+          <div style="text-align: right; margin-top: 2px">
+            <input
+              type="checkbox"
+              id="mostrar_contrasenaU"
+              title="Presione para mostrar la contraseña"
+            />
+            &nbsp;&nbsp;Mostrar contraseña
+          </div>
+
+          <div class="form-outline-mb-4">
+            <label for="form-label">Domicilio</label>
+            <input
+            type="text"
+            name="domicilio"
+            placeholder="Domicilio"
+            class="form-control mb-2"
+            autofocus
+            minlength="4"
+            required
+          />
+         
+ <br>
+          <button type="submit" class="btn btn-info">Registrarme</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/_footer") %>
