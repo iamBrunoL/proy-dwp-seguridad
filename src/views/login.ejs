@@ -1,0 +1,64 @@
+<%- include("partials/_header", { titulo: titulo }) %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <img src="img/login.png" class="img-fluid" alt="Phone image" />
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <form action="/iniciarSesion" method="POST">
+        <!-- Correo -->
+        <div class="form-outline mb-4">
+          <label class="form-label">Correo</label>
+          <input
+            type="email"
+            id="correoUsuario"
+            name="correoUsuario"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su correo electrónico"
+            required
+          />
+        </div>
+
+        <!-- Usuario -->
+        <div class="form-outline mb-4">
+          <label class="form-label">Usuario</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su nombre de usuario"
+            minlength="4"
+            required
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-outline mb-4">
+          <label class="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="contrasenaUsuario"
+            name="contrasenaUsuario"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su contraseña"
+            required
+          />
+          <div style="text-align: right; margin-top: 2px">
+            <input
+              type="checkbox"
+              id="mostrar_contrasena"
+              title="Presione para mostrar la contraseña"
+            />
+            &nbsp;&nbsp;Mostrar contraseña
+          </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-info">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/_footer") %>
