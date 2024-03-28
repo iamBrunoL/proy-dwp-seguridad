@@ -1,0 +1,72 @@
+<%- include("../partials/_headerUsuarioG", { titulo: titulo }) %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body">
+        <form action="/addCita" method="POST">
+          <div class="form-label-mb-4">
+            <label for="form-label">Motivo</label>
+            <input
+              type="text"
+              name="motivo"
+              placeholder="Motivo de la cita (máximo 30 caracteres)"
+              class="form-control mb-2"
+              minlength="8"
+              maxlength="30"
+              required
+            />
+          </div>
+
+          <div class="form-label-mb-4">
+            <label for="form-label">Descripcion</label>
+            <input
+              type="text"
+              name="descripcion"
+              placeholder="Ingrese los detalles de su cita (máximo 300 caracteres)"
+              class="form-control mb-2"
+              minlength="15"
+              maxlength="300"
+              required
+            />
+          </div>
+
+          <div class="form-label-mb-4">
+            <label for="form-label">Lugar</label>
+            <input
+              type="text"
+              placeholder="Consultar posteriormente"
+              class="form-control mb-2"
+              readonly
+            />
+          </div>
+
+          <div class="form-outline-mb-4">
+            <label for="form-label">Fecha</label>
+            <input
+              type="text"
+              placeholder="Consultar posteriormente"
+              class="form-control mb-2"
+              readonly
+            />
+          </div>
+
+          <div class="form-label-mb-4">
+            <label for="form-label">Estatus</label>
+            <input
+              type="text"
+              placeholder="Consultar posteriormente"
+              class="form-control mb-2"
+              readonly
+            />
+          </div>
+
+          <br />
+          <button type="submit" class="btn btn-info">Agendar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/_footer") %>
