@@ -1,0 +1,117 @@
+<%- include("../partials/_headerAdmin", { titulo: titulo }) %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5 offset-md-3 card">
+      <div class="card-body">
+        <form action="/updateUsuario/<%= usuario.id %>" method="POST">
+          
+         <div class="form-outline-mb-4">
+          <label for="form-outline">Nombre completo</label>
+          <input
+            type="text"
+            name="nombreCompleto"
+            value="<%= usuario.nombreCompleto %>"
+            placeholder="Nombre completo"
+            pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+            class="form-control mb-3"
+            autofocus
+            required
+          />
+        </div>
+
+        <div class="form-outline-mb-4">
+          <label for="form-outline">Apellidos</label>
+          <input
+            type="text"
+            name="apellidos"
+            value="<%= usuario.apellidos %>"
+            placeholder="Apellidos"
+            pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+            class="form-control mb-3"
+            autofocus
+            required
+          />
+        </div>
+
+          <div class="form-outline-mb-4">
+            <label for="">Dirección de correo electrónico</label>
+          <input
+            type="email"
+            name="email"
+            value="<%= usuario.email %>"
+            placeholder="Dirección de correo electrónico"
+            class="form-control mb-3"
+            required
+            autofocus
+          />
+        </div>
+          <div class="form-outline-mb-4">
+            <label for="form-outline">Teléfono</label>
+          <input
+            type="tel"
+            name="telefono"
+            value="<%= usuario.telefono %>"
+            placeholder="Teléfono"
+            class="form-control mb-3"
+            autofocus
+            pattern="[0-9]+"
+            title="Ingrese solo números"
+            minlength="10"
+            maxlength="10"
+            required
+          />
+        </div>
+          <div class="form-outline-mb-4">
+            <label for="">Nombre de usuario</label>
+          <input
+            type="text"
+            name="username"
+            value="<%= usuario.username %>"
+            placeholder="Nombre de usuario"
+            class="form-control mb-3"
+            required
+            autofocus
+            pattern="[a-zA-Z0-9]+"
+            title="Ingrese solo letras y números"
+            minlength="6"
+          />
+        </div>
+
+        <div class="form-outline mb-4">
+          <label class="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="contrasenaUsuario"
+            name="password"
+            value="<%= usuario.password %>"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su contraseña"
+            required
+          />
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Domicilio</label>
+          <input
+            type="text"
+            id="domicilio"
+            name="domicilio"
+            value="<%= usuario.domicilio %>"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su domicilio"
+            pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+            autofocus
+            minlength="10"
+            required
+          />
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-Act">Actualizar datos</button>
+        <a href="/usuarios" class="btn btn-secondary btn-Act">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/_footer") %>
