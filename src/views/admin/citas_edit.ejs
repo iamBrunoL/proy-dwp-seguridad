@@ -15,22 +15,6 @@
             />
           </div>
 
-          <% function formatFecha(fecha) {
-            const date = new Date(fecha);
-            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-            const formattedDate = date.toLocaleDateString('es-ES', options);
-            return formattedDate.split('/').reverse().join('/');
-          } %>
-        
-          <div class="form-outline-mb-4">
-            <label for="form-outline">Fecha de registro</label>
-            <input
-              type="text"
-              value="<%= formatFecha(cita.fechaRegistro) %>"
-              class="form-control mb-3"
-              readonly
-            />
-          </div>
 
           <div class="form-outline-mb-4">
             <label for="form-outline">Motivo</label>
