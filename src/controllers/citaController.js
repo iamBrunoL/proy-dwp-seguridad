@@ -34,7 +34,7 @@ function escapeWithSpaces(text) {
 export const renderCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const citasFormatted = rows.map((cita) => ({
@@ -213,7 +213,7 @@ export const buscarCitaPorId = async (req, res) => {
       });
     } else {
       const [rows] = await pool.query(
-        "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+        "SELECT citas.id, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
       );
 
       const citasFormatted = rows.map((cita) => ({
@@ -240,7 +240,7 @@ export const buscarCitaPorId = async (req, res) => {
 export const renderConsultaCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const citasFormatted = rows.map((cita) => ({
