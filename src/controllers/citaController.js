@@ -272,7 +272,7 @@ export const renderConsultaCitas = async (req, res) => {
 export const generarPDFCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo, citas.lugar, citas.fechaProgramada  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo, citas.lugar, citas.fechaProgramada  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const pdf = new PDFDocument();
