@@ -195,16 +195,22 @@ export const updateUsuario = async (req, res) => {
   }
 };
 
+
 export const deleteUsuario = async (req, res) => {
   const { id } = req.params;
   try {
+    // Buscar y eliminar citas asociadas al usuario
+    await pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
+
+    // Eliminar el usuario
     const result = await pool.query("DELETE FROM usuarios WHERE id = ?", [id]);
+
     // Registro de log
     const usuario = req.session.usuario;
     let crearLog = `Eliminación de usuario con id ${id} realizada por: ${
       usuario.username
     } a las ${new Date().toLocaleString()}`;
-    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    await pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
 
     if (result.affectedRows === 1) {
       res.send(
@@ -214,22 +220,17 @@ export const deleteUsuario = async (req, res) => {
       res.redirect("/usuario");
     }
   } catch (error) {
-    if (error.code === "ER_ROW_IS_REFERENCED_2") {
-      res
-        .status(400)
-        .send(
-          '<script>alert("No puedes eliminar este usuario porque tiene citas asociadas"); window.location="/usuario";</script>'
-        );
-    } else {
-      console.error("Error al eliminar usuario:", error);
-      res
-        .status(500)
-        .send(
-          '<script>alert("Ocurrió un error al eliminar el usuario"); window.location="/usuario";</script>'
-        );
-    }
+    console.error("Error al eliminar usuario:", error);
+    res
+      .status(500)
+      .send(
+        '<script>alert("Ocurrió un error al eliminar el usuario"); window.location="/usuario";</script>'
+      );
   }
 };
+
+
+
 
 export const buscarUsuario = async (req, res) => {
   const { username } = req.query;
