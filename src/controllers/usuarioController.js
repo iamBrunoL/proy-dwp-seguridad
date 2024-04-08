@@ -141,6 +141,12 @@ export const createUsuarios = async (req, res) => {
         ", "
       )}`;
       await pool.query("ROLLBACK");
+      return res.send(
+        `<script>alert(${JSON.stringify(
+          errorMessage
+        )}); window.location="/registro";</script>`
+      );
+    }
     await pool.query("INSERT INTO usuarios SET ?", [newUsuario]);
     await pool.query("COMMIT");
 
