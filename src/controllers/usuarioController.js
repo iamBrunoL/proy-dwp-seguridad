@@ -150,11 +150,7 @@ export const createUsuarios = async (req, res) => {
     await pool.query("INSERT INTO usuarios SET ?", [newUsuario]);
     await pool.query("COMMIT");
 
-    // Registro de log
-    let crearLog = `Creación de usuario: ${
-      newUsuario.username
-    } con correo ${newUsuario.email} a las ${new Date().toLocaleString()}`;
-    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    
     res.redirect("/login");
   } catch (error) {
     console.error("Error al crear usuario:", error);
