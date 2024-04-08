@@ -78,7 +78,9 @@ export const createCita = async (req, res) => {
       usuario.username
     } a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-    res.redirect("/tableroUsuario");
+    return res.send(
+            '<script>alert("Registro exitoso"); window.location="/tableroUsuario";</script>'
+          );
   } catch (error) {
     console.error("Error al crear cita:", error);
     await pool.query("ROLLBACK");
