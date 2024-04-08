@@ -27,6 +27,7 @@
             name="apellidos"
             value="<%= usuario.apellidos %>"
             placeholder="Apellidos"
+            pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
             class="form-control mb-3"
             autofocus
             required
@@ -98,7 +99,6 @@
             value="<%= usuario.domicilio %>"
             class="form-control form-control-lg"
             placeholder="Ingrese su domicilio"
-            pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
             autofocus
             minlength="10"
             required
