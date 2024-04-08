@@ -141,12 +141,6 @@ export const createUsuarios = async (req, res) => {
         ", "
       )}`;
       await pool.query("ROLLBACK");
-      return res.send(
-        `<script>alert(${JSON.stringify(
-          errorMessage
-        )}); window.location.href = "/registro";</script>`
-      );
-    }
     await pool.query("INSERT INTO usuarios SET ?", [newUsuario]);
     await pool.query("COMMIT");
 
@@ -155,7 +149,9 @@ export const createUsuarios = async (req, res) => {
       newUsuario.username
     } con correo ${newUsuario.email} a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-    res.redirect("/login");
+     return res.send(
+            '<script>alert("Registro exitoso"); window.location="/login";</script>'
+          );
   } catch (error) {
     console.error("Error al crear usuario:", error);
     await pool.query("ROLLBACK");
