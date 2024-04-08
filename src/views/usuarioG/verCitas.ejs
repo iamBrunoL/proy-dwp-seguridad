@@ -10,7 +10,6 @@
               <thead>
                 <tr>
                   <th class="sort border-top border-translucent">ID de cita</th>
-                  <th class="sort border-top border-translucent">Fecha de registro</th>
                   <th class="sort border-top border-translucent">Motivo</th>
                   <th class="sort border-top border-translucent">Descripción</th>
                   <th class="sort border-top border-translucent">Lugar</th>
@@ -22,7 +21,6 @@
                 <% for(var i = 0; i < citas.length; i++) { %>
                   <tr>
                     <td class="align-middle"><%= citas[i].id %></td>
-                    <td class="align-middle"><%= citas[i].fechaRegistro %></td>
                     <td class="align-middle"><%= citas[i].motivo %></td>
                     <td class="align-middle"><%= citas[i].descripcion %></td>
                     <td class="align-middle"><%= citas[i].lugar %></td>
