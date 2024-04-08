@@ -34,12 +34,11 @@ function escapeWithSpaces(text) {
 export const renderCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(citas.fechaRegistro, '%W %d de %M de %Y') AS fechaFormateada, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const citasFormatted = rows.map((cita) => ({
       id: cita.id,
-      fecha: cita.fechaFormateada,
       motivo: cita.motivo,
       nombreUsuario: cita.nombreUsuario,
       descripcion: escapeWithSpaces(cita.descripcion),
@@ -148,7 +147,6 @@ export const renderMisCitas = async (req, res) => {
 
     const citasFormatted = rows.map((cita) => ({
       id: cita.id,
-      fechaRegistro: formatDate(cita.fechaRegistro),
       id_usuario: cita.id_usuario,
       motivo: cita.motivo,
       descripcion: cita.descripcion,
@@ -191,7 +189,6 @@ export const buscarCitaPorId = async (req, res) => {
 
       const citasFormatted = rows.map((cita) => ({
         id: cita.id,
-        fechaRegistro: formatDate(cita.fechaRegistro),
         id_usuario: cita.id_usuario,
         nombreUsuario: cita.nombreUsuario,
         motivo: cita.motivo,
@@ -216,12 +213,11 @@ export const buscarCitaPorId = async (req, res) => {
       });
     } else {
       const [rows] = await pool.query(
-        "SELECT citas.id, DATE_FORMAT(citas.fechaRegistro, '%W %d de %M de %Y') AS fechaFormateada, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+        "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
       );
 
       const citasFormatted = rows.map((cita) => ({
         id: cita.id,
-        fecha: cita.fechaFormateada,
         motivo: cita.motivo,
         nombreUsuario: cita.nombreUsuario,
         descripcion: escapeWithSpaces(cita.descripcion),
@@ -244,12 +240,11 @@ export const buscarCitaPorId = async (req, res) => {
 export const renderConsultaCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(citas.fechaRegistro, '%W %d de %M de %Y') AS fechaFormateada, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const citasFormatted = rows.map((cita) => ({
       id: cita.id,
-      fecha: cita.fechaFormateada,
       motivo: cita.motivo,
       nombreUsuario: cita.nombreUsuario,
       descripcion: escapeWithSpaces(cita.descripcion),
@@ -277,7 +272,7 @@ export const renderConsultaCitas = async (req, res) => {
 export const generarPDFCitas = async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT citas.id, DATE_FORMAT(citas.fechaRegistro, '%W %d de %M de %Y') AS fechaFormateada, usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo, citas.lugar, citas.fechaProgramada  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
+      "SELECT citas.id, DATE_FORMAT(usuarios.nombreCompleto AS nombreUsuario, citas.descripcion, citas.estatus, citas.motivo, citas.lugar, citas.fechaProgramada  FROM citas JOIN usuarios ON citas.id_usuario = usuarios.id"
     );
 
     const pdf = new PDFDocument();
@@ -295,7 +290,6 @@ export const generarPDFCitas = async (req, res) => {
     pdf.moveDown();
     rows.forEach((cita) => {
       pdf.text(`ID: ${cita.id}`);
-      pdf.text(`Fecha: ${cita.fechaFormateada}`);
       pdf.text(`Nombre del usuario: ${cita.nombreUsuario}`);
       pdf.text(`Motivo: ${cita.motivo}`);
       pdf.text(`Descripción: ${cita.descripcion}`);
