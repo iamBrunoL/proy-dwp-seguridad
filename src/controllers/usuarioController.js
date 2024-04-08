@@ -325,7 +325,6 @@ export const generarPDFPersonal = async (req, res) => {
       pdf.text(`Fecha de Nacimiento: ${usuario.fechaNacimiento}`);
       pdf.text(`Domicilio: ${usuario.domicilio}`);
       pdf.text(`Telefono: ${usuario.telefono}`);
-      pdf.text(`Fecha de registro: ${usuario.fechaRegistro}`);
       pdf.text(`Role: ${usuario.role}`);
       pdf.moveDown();
     });
@@ -374,7 +373,6 @@ export const generarPDFUsuarios = async (req, res) => {
       pdf.text(`Fecha de nacimiento: ${usuario.fechaNacimiento}`);
       pdf.text(`Domicilio: ${usuario.domicilio}`);
       pdf.text(`Teléfono: ${usuario.telefono}`);
-      pdf.text(`Fecha de registro: ${usuario.fechaRegistro}`);
       pdf.moveDown();
     });
 
