@@ -154,7 +154,6 @@ export const deleteUsuario = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query("DELETE FROM usuarios WHERE id = ?", [id]);
-    const result = await pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
     // Registro de log
     const usuario = req.session.usuario;
     let crearLog = `Eliminación de usuario con id ${id} realizada por: ${
@@ -163,6 +162,7 @@ export const deleteUsuario = async (req, res) => {
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     if (result.affectedRows === 1) {
       return res.send(
+        await pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
         '<script>alert("Eliminación de usuario realizada correctamente"); window.location="/usuario";</script>'
       );
     } else {
