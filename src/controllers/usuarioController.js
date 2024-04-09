@@ -154,6 +154,7 @@ export const deleteUsuario = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query("DELETE FROM usuarios WHERE id = ?", [id]);
+    const result = await pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
     // Registro de log
     const usuario = req.session.usuario;
     let crearLog = `Eliminación de usuario con id ${id} realizada por: ${
