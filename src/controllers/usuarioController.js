@@ -160,9 +160,9 @@ export const deleteUsuario = async (req, res) => {
       usuario.username
     } a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
     if (result.affectedRows === 1) {
       return res.send(
-        pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
         '<script>alert("Eliminación de usuario realizada correctamente"); window.location="/usuario";</script>'
       );
     } else {
