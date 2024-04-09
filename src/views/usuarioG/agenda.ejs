@@ -1,0 +1,63 @@
+<%- include("../partials/_headerUsuarioG", { titulo: titulo }) %>
+
+<div class="container mt-5 datos">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <div class="card-body">
+        <form action="/addCita" method="POST">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Motivo</h5>
+            <input
+              type="text"
+              name="motivo"
+              placeholder="Motivo de la cita (máximo 40 caracteres)"
+              class="form-control mb-2"
+              minlength="8"
+              maxlength="40"
+              autofocus
+              pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+              title="Ingrese solo letras y espacios"
+              required
+            />
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Descripción</h5>
+              <textarea
+              type="text"
+              name="descripcion"
+              placeholder="Ingrese los detalles de su cita (máximo 300 caracteres)"
+              class="form-control mb-2"
+              minlength="15"
+              maxlength="300"
+              autofocus
+              pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+              title="Ingrese solo letras y espacios"
+              required
+             cols="30" rows="10"></textarea>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">El lugar, fecha programada y estatus</h5>
+              <p class="card-text">
+                Se podrán consultar posteriormente en el apartado de Mis citas
+              </p>
+            </div>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-info">Agendar</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <img src="img/crear_citas.png" class="img-fluid" alt="Phone image" />
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/_footer") %>
