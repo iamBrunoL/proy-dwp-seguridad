@@ -154,14 +154,13 @@ export const deleteUsuario = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query("DELETE FROM usuarios WHERE id = ?", [id]);
-    const result1 = await pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
     // Registro de log
     const usuario = req.session.usuario;
     let crearLog = `Eliminación de usuario con id ${id} realizada por: ${
       usuario.username
     } a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-
+    pool.query("DELETE FROM citas WHERE id_usuario = ?", [id]);
     if (result.affectedRows === 1) {
       return res.send(
         '<script>alert("Eliminación de usuario realizada correctamente"); window.location="/usuario";</script>'
