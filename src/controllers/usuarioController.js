@@ -75,7 +75,7 @@ export const iniciarSesion = async (req, res) => {
     // Registro de log
     let crearLog = `Inicio de sesión  del usuario: ${
       usuario.username
-    } a las ${new Date().toLocaleString()}- Dirección IP: ${direccionIP} - Nombre de host: ${nombreHost}`;
+    } a las ${new Date().toLocaleString()}- Nombre de host: ${nombreHost}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     res.redirect(paginaDestino);
   } catch (error) {
