@@ -2,6 +2,9 @@ import { pool } from "../db.js";
 import PDFDocument from "pdfkit";
 import fs from "fs";
 
+export const direccionIP = req.connection.remoteAddress;
+export const nombreHost = req.headers.host;
+
 export const renderMisDatos = (req, res) => {
   const titulo = "Mi perfil";
    // Registro de log
@@ -74,7 +77,7 @@ export const iniciarSesion = async (req, res) => {
     // Registro de log
     let crearLog = `Inicio de sesión  del usuario: ${
       usuario.username
-    } a las ${new Date().toLocaleString()}`;
+    } a las ${new Date().toLocaleString()}- Dirección IP: ${direccionIP} - Nombre de host: ${nombreHost}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     res.redirect(paginaDestino);
   } catch (error) {
