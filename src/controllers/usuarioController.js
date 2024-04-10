@@ -2,9 +2,6 @@ import { pool } from "../db.js";
 import PDFDocument from "pdfkit";
 import fs from "fs";
 
-export const direccionIP = req.connection.remoteAddress;
-export const nombreHost = req.headers.host;
-
 export const renderMisDatos = (req, res) => {
   const titulo = "Mi perfil";
    // Registro de log
@@ -73,7 +70,8 @@ export const iniciarSesion = async (req, res) => {
     }
 
     req.session.usuario = usuario;
-
+    const direccionIP = req.connection.remoteAddress;
+    const nombreHost = req.headers.host;
     // Registro de log
     let crearLog = `Inicio de sesión  del usuario: ${
       usuario.username
