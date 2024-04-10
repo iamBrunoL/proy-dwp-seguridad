@@ -70,7 +70,6 @@ export const iniciarSesion = async (req, res) => {
     }
 
     req.session.usuario = usuario;
-    const direccionIP = req.connection.remoteAddress;
     const nombreHost = req.headers.host;
     // Registro de log
     let crearLog = `Inicio de sesión  del usuario: ${
@@ -87,9 +86,10 @@ export const iniciarSesion = async (req, res) => {
 export const cerrarSesion = (req, res) => {
   // Registro de log
   const usuario = req.session.usuario;
+  const nombreHost = req.headers.host;
   let crearLog = `Cierre de sesión del usuario: ${
     usuario.username
-  } a las ${new Date().toLocaleString()}`;
+  } a las ${new Date().toLocaleString()}- Nombre de host: ${nombreHost}`;
   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
 
   req.session.destroy((err) => {
