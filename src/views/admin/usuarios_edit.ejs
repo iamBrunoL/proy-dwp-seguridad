@@ -77,6 +77,22 @@
             minlength="6"
           />
         </div>
+        <div class="form-outline mb-4">
+          <label class="form-label">Domicilio</label>
+          <input
+            type="text"
+            id="domicilio"
+            name="domicilio"
+            value="<%= usuario.domicilio %>"
+            class="form-control form-control-lg"
+            placeholder="Ingrese su domicilio"
+            autofocus
+            pattern="[a-zA-Z0-9.°#ñÑáéíóúÁÉÍÓÚ\s]+"
+            title="Ingrese solo letras, símbolos "#", " ° " ,"." y números"
+            minlength="10"
+            required
+          />
+        </div>
 
         <div class="form-outline mb-4">
           <label class="form-label">Contraseña</label>
@@ -98,22 +114,7 @@
             &nbsp;&nbsp;Mostrar contraseña
           </div>
         </div>
-        <div class="form-outline mb-4">
-          <label class="form-label">Domicilio</label>
-          <input
-            type="text"
-            id="domicilio"
-            name="domicilio"
-            value="<%= usuario.domicilio %>"
-            class="form-control form-control-lg"
-            placeholder="Ingrese su domicilio"
-            autofocus
-            pattern="[a-zA-Z0-9.°#ñÑáéíóúÁÉÍÓÚ\s]+"
-            title="Ingrese solo letras, símbolos "#", " ° " ,"." y números"
-            minlength="10"
-            required
-          />
-        </div>
+        
         <br>
         <button type="submit" class="btn btn-info btn-Act">Actualizar datos</button>
         <a href="/usuario" class="btn btn-secondary btn-Act">Cancelar</a>
