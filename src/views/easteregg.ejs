@@ -1,16 +1,20 @@
 <%- include("partials/_head", { titulo: titulo }) %>
 
 <div class="container mt-5 datos">
+    <!-- Abre el contenedor principal -->
     <h1>Proyecto final</h1>
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6 col-sm-6">
+            <!-- Abre la columna izquierda -->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Desarrolladores</h5>
-                    <p class="card-text">Luis Gerardo Bruno López</p>
-                    <p class="card-text">Odalys Daniela García Luján</p>
-                    <p class="card-text">Andrés Jovan Reyes Sánchez</p>
-                    <p class="card-text">Johana Elizabeth Calzada Ramírez</p>
+                    <ul> <!-- Abre la lista de desarrolladores -->
+                        <li>Luis Gerardo Bruno López</li>
+                        <li>Odalys Daniela García Luján</li>
+                        <li>Andrés Jovan Reyes Sánchez</li>
+                        <li>Johana Elizabeth Calzada Ramírez</li>
+                    </ul> <!-- Cierra la lista de desarrolladores -->
                 </div>
             </div>
 
@@ -27,8 +31,9 @@
                     <p class="card-text">Desarrollo y gestión de software</p>
                 </div>
             </div>
-        </div>
+        </div> <!-- Cierra la columna izquierda -->
         <div class="col-lg-6 col-md-6 col-sm-6">
+            <!-- Abre la columna derecha -->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">UTNA</h5>
@@ -39,21 +44,25 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Materias</h5>
-                    <p class="card-text">Administración de bases de datos</p>
-                    <p class="card-text">Desarrollo web profesional</p>
-                    <p class="card-text">Seguridad en el desarrollo de aplicaciones</p>
+                    <ul> <!-- Abre la lista de materias -->
+                        <li>Administración de bases de datos</li>
+                        <li>Desarrollo web profesional</li>
+                        <li>Seguridad en el desarrollo de aplicaciones</li>
+                    </ul> <!-- Cierra la lista de materias -->
                 </div>
             </div>
 
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Profesores</h5>
-                    <p class="card-text">Daniel Eduardo Gómez Cuevas</p>
-                    <p class="card-text">Yeivi Jara Ruiz</p>
+                    <ul> <!-- Abre la lista de profesores -->
+                        <li>Daniel Eduardo Gómez Cuevas</li>
+                        <li>Yeivi Jara Ruiz</li>
+                    </ul> <!-- Cierra la lista de profesores -->
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </div> <!-- Cierra la columna derecha -->
+    </div> <!-- Cierra el contenedor de la fila -->
+</div> <!-- Cierra el contenedor principal -->
 
 <%- include("partials/pies") %>
