@@ -6,6 +6,7 @@ import { renderError } from "../controllers/paginasController.js";
 import {
   renderLogin,
   renderPrincipal,
+  renderEasterEgg,
   renderTableroUsuario,
   renderTableroAdmin,
   renderTableroSupervisor,
