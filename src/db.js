@@ -7,3 +7,9 @@ export const pool = createPool({
   port: 3306,
   database: "blao5xqfq9hfx2xk7rgf",
 });
+
+
+
+// Registro de log
+   let crearLog = `Despliegue de aplicación (Sapphire Networks) a las ${new Date().toLocaleString()}`;
+   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
