@@ -1,9 +1,7 @@
 import express from "express";
 import session from "express-session";
 import path from "path";
-import morgan from "morgan";
 import { fileURLToPath } from "url";
-
 import usuarioRoutes from "./routes/usuario.routes.js";
 import citasRoutes from "./routes/citas.routes.js";
 import paginasRoutes from "./routes/paginas.routes.js";
@@ -21,8 +19,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-//app.use(morgan("dev"));
-
 app.use(express.urlencoded({ extended: false }));
 
 app.use(usuarioRoutes);
@@ -30,5 +26,10 @@ app.use(citasRoutes);
 app.use(paginasRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
+
+// Configura Express para escuchar solo en IPv4
+const server = app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
+  console.log(`Servidor iniciado en http://0.0.0.0:${process.env.PORT || 3000}`);
+});
 
 export default app;
