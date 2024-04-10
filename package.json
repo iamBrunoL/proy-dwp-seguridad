@@ -1,7 +1,7 @@
 {
-  "name": "crud-nodejs-mysql",
+  "name": "proy-dwp-seguridad",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proyecto de citas (Sapphire Networks) que cumple con los requerimientos especificados en las materias de 'Administración de bases de datos', 'Desarrollo web profesional' y 'Seguridad en el desarrollo de aplicaciones'. Puede ingresar a: https://node-js-worz.onrender.com/ y comprobar el funcionamiento del sistema.",
   "main": "src/index.js",
   "type": "module",
   "dependencies": {
