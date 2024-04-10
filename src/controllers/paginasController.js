@@ -3,6 +3,11 @@ export const renderPrincipal = async (req, res) => {
   res.render("principal", { titulo: titulo });
 };
 
+export const renderEasterEgg = async (req, res) => {
+  const titulo = "Sapphire Networks - Desarrolladores";
+  res.render("easteregg", { titulo: titulo });
+};
+
 export const renderLogin = async (req, res) => {
   const titulo = "Login";
   res.render("login", { titulo: titulo });
