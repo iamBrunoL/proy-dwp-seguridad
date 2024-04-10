@@ -28,7 +28,7 @@ app.use(paginasRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Configura Express para escuchar solo en IPv4
-const server = app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
+const server = app.listen(process.env.PORT || 4000, '0.0.0.0', () => {
   console.log(`Servidor iniciado en http://0.0.0.0:${process.env.PORT || 3000}`);
 });
 
