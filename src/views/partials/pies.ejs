@@ -41,7 +41,7 @@
 <script>
   function validarCorreo() {
     var correo = document.getElementById('email').value;
-    var dominiosValidos = ["hubspot.com", "gmail.com", "protonmail.com", "icloud.com", "zoho.com", "outlook.com", "mailbox.org", "yahoo.com", "bluehost.com", "rackspace.com"];
+    var dominiosValidos = ["gmail.com", "outlook.com", "yahoo.com"];
 
     var dominio = correo.split('@')[1];
 
@@ -81,7 +81,7 @@
     var edadMinima = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
 
     if (fechaNacimiento > edadMinima) {
-      alert("Debes tener al menos 18 años para registrarte. Por favor, modifica el año de nacimiento.");
+      alert("Debes tener al menos 18 años para registrarte. Por favor, ingresa una fecha válida.");
       return false;
     } else {
       return true;
