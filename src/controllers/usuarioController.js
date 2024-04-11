@@ -513,7 +513,7 @@ export const renderModificarRolUsuarios = async (req, res) => {
   try {
     const [rowsUsuarios] = await pool.query("SELECT * FROM usuarios");
     const [rowsAdministrador] = await pool.query("SELECT * FROM administrador");
-    res.render("admin/modificarRolUsuarios", {
+    res.render("supervisor/modificarRolUsuarios", {
       usuarios: rowsUsuarios,
       administradores: rowsAdministrador,
       titulo: titulo,
@@ -526,7 +526,7 @@ export const renderModificarRolUsuarios = async (req, res) => {
     } a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     return res.send(
-      '<script>alert("Actualización de rol realizada correctamente"); window.location="/consultaPersonal";</script>'
+      '<script>alert("Actualización de rol realizada correctamente"); window.location="/modificarRolUsuarios";</script>'
     );
   } catch (error) {
     console.error("Error al cargar la vista para modificar el rol de usuarios:", error);
