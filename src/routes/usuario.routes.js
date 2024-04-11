@@ -15,7 +15,6 @@ import {
 } from "../controllers/usuarioController.js";
 const router = Router();
 
-router.get("/modificarRolUsuarios", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderModificarRolUsuarios);
 
 router.get("/misDatos", setNoCacheHeaders, verificarAutenticacion, verificarRol("Usuario general"), renderMisDatos);
 router.get("/misCitas", setNoCacheHeaders, verificarAutenticacion, verificarRol("Usuario general"), renderMisCitas);
@@ -38,7 +37,7 @@ router.post("/addUsuario", createUsuarios);
 router.get("/personal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderPersonal);
 router.post("/addPersonal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), createUsuariosPersonal);
 router.post("/updateUsuarioRole/:id", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), updateUsuarioRole);
-
+router.get("/modificarRolUsuarios/:id", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderModificarRolUsuarios);
 
 router.get('/generarPDFUsuarios', setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), generarPDFUsuarios);
 router.get('/generarPDFPersonal', setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), generarPDFPersonal);
