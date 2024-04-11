@@ -16,7 +16,7 @@ const router = Router();
 
 
 router.get("/", renderPrincipal);
-router.get("/easteregg", renderEasterEgg);
+router.get("/desarrolladores", renderEasterEgg);
 router.get("/errorAcceso", renderErrorAcceso);
 router.get("/error", renderError);
 router.get("/login", renderLogin);
