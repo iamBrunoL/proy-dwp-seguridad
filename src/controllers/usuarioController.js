@@ -470,7 +470,7 @@ export const createUsuarios = async (req, res) => {
     await pool.query("COMMIT"); // Commit de la transacción
 
    // Registro de log
-    let crearLog = `Registro de usuario con username ${newUsuariousername}, email ${newUsuario.email} y teléfono ${newUsuario.telefono} realizada a las ${new Date().toLocaleString()}`;
+    let crearLog = `Registro de usuario con username ${newUsuario.username}, email ${newUsuario.email} y teléfono ${newUsuario.telefono} realizada a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     return res.send( // Enviar respuesta al cliente
       '<script>alert("Registro de usuario exitoso"); window.location="/login";</script>'
