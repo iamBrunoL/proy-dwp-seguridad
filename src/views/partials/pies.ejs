@@ -74,3 +74,26 @@
       });
     });
   </script>
+
+<script>
+  function validarFechaNacimiento() {
+    var fechaNacimiento = new Date(document.getElementById('fechaNacimiento').value);
+    var hoy = new Date();
+    var edadMinima = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
+
+    if (fechaNacimiento > edadMinima) {
+      alert("Debes tener al menos 18 años para registrarte.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Agregar el evento onSubmit al formulario para llamar a la función validarFechaNacimiento()
+  document.getElementById('registroForm').addEventListener('submit', function(event) {
+    if (!validarFechaNacimiento()) {
+      event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
+    }
+  });
+</script>
+
