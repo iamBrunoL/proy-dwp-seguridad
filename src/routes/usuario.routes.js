@@ -38,6 +38,7 @@ router.get("/personal", setNoCacheHeaders, verificarAutenticacion, verificarRol(
 router.post("/addPersonal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), createUsuariosPersonal);
 router.post("/updateUsuarioRole/:id", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), updateUsuarioRole);
 
+
 router.get('/generarPDFUsuarios', setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), generarPDFUsuarios);
 router.get('/generarPDFPersonal', setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), generarPDFPersonal);
 export default router;
