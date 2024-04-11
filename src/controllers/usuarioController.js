@@ -507,19 +507,31 @@ export const createUsuariosPersonal = async (req, res) => {
   }
 };
 
-export const updateUsuarioRole = async (req, res) => {
+// Agrega esta función al final de tu controlador
+export const updateUserRole = async (req, res) => {
   const { id } = req.params;
   const { role } = req.body;
 
   try {
+    // Lógica para actualizar el rol del usuario
     await pool.query("START TRANSACTION");
-    await pool.query("UPDATE usuarios SET role = ? WHERE id = ?", [role, id]); // Actualizar el rol en la tabla usuarios
-    await pool.query("UPDATE administrador SET role = ? WHERE id = ?", [role, id]); // Actualizar el rol en la tabla administrador
+    // Actualiza el rol en ambas tablas según sea necesario
+    await pool.query("UPDATE administrador SET role = ? WHERE id = ?", [role, id]);
+    await pool.query("UPDATE usuarios SET role = ? WHERE id = ?", [role, id]);
     await pool.query("COMMIT");
-    return res.redirect("/consultaUsuarios"); // Redirigir a la vista de consulta de usuarios
+
+     // Registro de log
+    const usuario = req.session.usuario;
+    let crearLog = `Actualización de rol de personal para realizada por: ${
+      usuario.username
+    } a las ${new Date().toLocaleString()}`;
+    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    return res.send(
+      '<script>alert("Actualización de rol realizada correctamente"); window.location="/actualizarRoles";</script>'
+    );
   } catch (error) {
     console.error("Error al actualizar el rol del usuario:", error);
     await pool.query("ROLLBACK");
-    res.redirect("/error");
+    res.status(500).send('Error al actualizar el rol del usuario');
   }
 };
