@@ -27,7 +27,7 @@ router.get("/deleteUsuario/:id", setNoCacheHeaders, verificarAutenticacion, veri
 
 router.get("/consultaUsuarios", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaUsuarios);
 router.get("/consultaPersonal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaPersonal);
-router.get("/consultaLogs", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaLogs);
+router.get("/consultaLogs", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor","Administrador"), renderConsultaLogs);
 
 router.post("/iniciarSesion", iniciarSesion);
 router.get("/cerrarSesion", cerrarSesion);
