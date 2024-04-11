@@ -1,0 +1,38 @@
+<%- include("../partials/_headerSupervisor", { titulo: titulo }) %>
+
+<div class="container mt-5 fluid">
+  <h1>Consulta de historial de actividades</h1>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div id="tableExample">
+          <div class="table-responsive">
+            <table class="table table-sm fs-9 mb-0">
+              <thead>
+                <tr>
+                  <th class="sort border-top border-translucent">ID</th>
+                  <th class="sort border-top border-translucent">Detalles de actividad</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <% if (logs && logs.length > 0) { %> <% for(var i = 0; i
+                < logs.length; i++) { %>
+                <tr>
+                  <td class="align-middle"><%= logs[i].id %></td>
+                  <td class="align-middle"><%= logs[i].contenido %></td>
+                </tr>
+                <% } %> 
+              <% } else { %>
+                <tr>
+                  <td colspan="5"><%= message %></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/_footer") %>
+
