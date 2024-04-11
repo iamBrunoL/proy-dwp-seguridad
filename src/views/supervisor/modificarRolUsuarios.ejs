@@ -41,12 +41,43 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      <h2>Administradores</h2>
-      <!-- Repite el mismo código de la tabla para los administradores -->
-      <!-- Cambia 'usuarios' por 'administradores' -->
-      <!-- Utiliza 'administradores' en lugar de 'usuarios' en el forEach -->
-    </div>
+
+<div class="col-lg-6 col-md-6 col-sm-12">
+  <h2>Administradores</h2>
+  <table class="table table-sm fs-9 mb-0">
+    <!-- Encabezado de la tabla -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Rol</th>
+      </tr>
+    </thead>
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      <% administradores.forEach(administrador => { %>
+      <tr>
+        <td><%= administrador.id %></td>
+        <td><%= administrador.username %></td>
+        <td><%= administrador.email %></td>
+        <td><%= administrador.telefono %></td>
+        <td>
+          <form action="/updateUsuarioRole/<%= administrador.id %>" method="POST">
+            <select name="role" class="form-select" onchange="this.form.submit()">
+              <option value="Administrador" <%= administrador.role === 'Administrador' ? 'selected' : '' %>>Administrador</option>
+              <option value="Supervisor" <%= administrador.role === 'Supervisor' ? 'selected' : '' %>>Supervisor</option>
+              <option value="Usuario general" <%= administrador.role === 'Usuario general' ? 'selected' : '' %>>Usuario general</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
   </div>
 </div>
 
