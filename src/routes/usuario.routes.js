@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cerrarSesion, generarPDFPersonal, iniciarSesion, renderConsultaPersonal, renderConsultaUsuarios, createUsuariosPersonal, renderPersonal, updateUsuarioRole } from "../controllers/usuarioController.js";
+import { cerrarSesion, generarPDFPersonal, iniciarSesion, renderConsultaPersonal, renderConsultaUsuarios, createUsuariosPersonal, renderPersonal, updateUsuarioRole, renderConsultaLogs } from "../controllers/usuarioController.js";
 import { verificarAutenticacion, verificarRol } from "../controllers/authMiddleware.js";
 import { setNoCacheHeaders } from "../controllers/cache.js";
 import { renderMisDatos, buscarUsuario, generarPDFUsuarios } from "../controllers/usuarioController.js";
@@ -27,6 +27,7 @@ router.get("/deleteUsuario/:id", setNoCacheHeaders, verificarAutenticacion, veri
 
 router.get("/consultaUsuarios", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaUsuarios);
 router.get("/consultaPersonal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaPersonal);
+router.get("/consultaLogs", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderConsultaLogs);
 
 router.post("/iniciarSesion", iniciarSesion);
 router.get("/cerrarSesion", cerrarSesion);
