@@ -15,6 +15,7 @@ import {
 } from "../controllers/usuarioController.js";
 const router = Router();
 
+router.get("/modificarRolUsuarios", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderModificarRolUsuarios);
 
 router.get("/misDatos", setNoCacheHeaders, verificarAutenticacion, verificarRol("Usuario general"), renderMisDatos);
 router.get("/misCitas", setNoCacheHeaders, verificarAutenticacion, verificarRol("Usuario general"), renderMisCitas);
