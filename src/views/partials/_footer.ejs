@@ -44,7 +44,7 @@
     if (dominiosValidos.includes(dominio)) {
       return true;
     } else {
-      alert("Por favor, introduce una dirección de correo electrónico con un dominio válido.");
+      alert('Por favor, introduce una dirección de correo electrónico con un dominio válido, por ejemplo:"hubspot.com", "gmail.com", "protonmail.com", "icloud.com", "zoho.com", "outlook.com", "mailbox.org", "yahoo.com", "bluehost.com", "rackspace.com".');
       return false;
     }
   }
@@ -77,7 +77,7 @@
     var edadMinima = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
 
     if (fechaNacimiento > edadMinima) {
-      alert("Debes tener al menos 18 años para registrarte.");
+      alert("Debes tener al menos 18 años para registrarte. Por favor, modifica el año de nacimiento.");
       return false;
     } else {
       return true;
