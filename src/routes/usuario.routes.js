@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cerrarSesion, generarPDFPersonal, iniciarSesion, renderConsultaPersonal, renderConsultaUsuarios, createUsuariosPersonal, renderPersonal, updateUsuarioRole, renderConsultaLogs } from "../controllers/usuarioController.js";
+import { cerrarSesion, generarPDFPersonal, iniciarSesion, renderConsultaPersonal, renderConsultaUsuarios, createUsuariosPersonal, renderPersonal, updateUsuarioRole, renderConsultaLogs, renderConsultaLogs2 } from "../controllers/usuarioController.js";
 import { verificarAutenticacion, verificarRol } from "../controllers/authMiddleware.js";
 import { setNoCacheHeaders } from "../controllers/cache.js";
 import { renderMisDatos, buscarUsuario, generarPDFUsuarios } from "../controllers/usuarioController.js";
