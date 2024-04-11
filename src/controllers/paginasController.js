@@ -5,7 +5,7 @@ export const renderPrincipal = async (req, res) => {
 
 export const renderEasterEgg = async (req, res) => {
   const titulo = "Sapphire Networks - Desarrolladores";
-  res.render("easteregg", { titulo: titulo });
+  res.render("desarrolladores", { titulo: titulo });
 };
 
 export const renderLogin = async (req, res) => {
