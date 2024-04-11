@@ -507,30 +507,35 @@ export const createUsuariosPersonal = async (req, res) => {
   }
 };
 
-
 export const renderModificarRolUsuarios = async (req, res) => {
   const titulo = "Modificar Rol de Usuarios";
+  const connection = await pool.getConnection();
   try {
-    const [rowsUsuarios] = await pool.query("SELECT * FROM usuarios");
-    const [rowsAdministrador] = await pool.query("SELECT * FROM administrador");
+    await connection.beginTransaction();
+
+    const [rowsUsuarios] = await connection.query("SELECT * FROM usuarios");
+    const [rowsAdministrador] = await connection.query("SELECT * FROM administrador");
+
+    // Registro de log
+    const usuario = req.session.usuario;
+    let crearLog = `Carga de vista para modificar el rol de usuarios realizada por: ${
+      usuario.username
+    } a las ${new Date().toLocaleString()}`;
+    await connection.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+
+    await connection.commit();
+
     res.render("supervisor/modificarRolUsuarios", {
       usuarios: rowsUsuarios,
       administradores: rowsAdministrador,
       titulo: titulo,
       message: "Sin resultados encontrados",
     });
-    // Registro de log
-    const usuario = req.session.usuario;
-    let crearLog = `Actualización de rol de usuarios realizada por: ${
-      usuario.username
-    } a las ${new Date().toLocaleString()}`;
-    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-    return res.send(
-      '<script>alert("Actualización de rol realizada correctamente"); window.location="/modificarRolUsuarios";</script>'
-    );
   } catch (error) {
+    await connection.rollback();
     console.error("Error al cargar la vista para modificar el rol de usuarios:", error);
     res.redirect("/error");
+  } finally {
+    connection.release();
   }
 };
-
