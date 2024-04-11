@@ -521,7 +521,7 @@ export const renderModificarRolUsuarios = async (req, res) => {
     });
     // Registro de log
     const usuario = req.session.usuario;
-    let crearLog = `Actualización de rol de usuarios con id ${id} realizada por: ${
+    let crearLog = `Actualización de rol de usuarios realizada por: ${
       usuario.username
     } a las ${new Date().toLocaleString()}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
