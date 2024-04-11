@@ -445,8 +445,9 @@ export const createUsuarios = async (req, res) => {
     await pool.query("INSERT INTO usuarios SET ?", [newUsuario]);
     await pool.query("COMMIT"); // Commit de la transacción
 
-    // Registro de log...
-
+   // Registro de log
+    let crearLog = `Registro de usuario con username ${newUsuariousername}, email ${newUsuario.email} y teléfono ${newUsuario.telefono} realizada a las ${new Date().toLocaleString()}`;
+    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     return res.send( // Enviar respuesta al cliente
       '<script>alert("Registro de usuario exitoso"); window.location="/login";</script>'
     );
@@ -495,43 +496,18 @@ export const createUsuariosPersonal = async (req, res) => {
     await pool.query("INSERT INTO administrador SET ?", [newUsuario]);
     await pool.query("COMMIT"); // Commit de la transacción
 
-    // Registro de log...
-
-    return res.send( // Enviar respuesta al cliente
-      '<script>alert("Registro exitoso"); window.location="/tableroSupervisor";</script>'
+    // Registro de log
+    const usuario = req.session.usuario;
+    let crearLog = `Registro de nuevo usuario de personal con username ${newUsuario.username} realizada por: ${
+      usuario.username
+    } a las ${new Date().toLocaleString()}`;
+    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    return res.send(
+      '<script>alert("Registro exitoso"); window.location="/consultaPersonal";</script>'
     );
   } catch (error) {
     console.error("Error al crear usuario:", error);
     await pool.query("ROLLBACK");
     res.redirect("/tableroSupervisor");
-  }
-};
-
-// Agrega esta función al final de tu controlador
-export const updateUserRole = async (req, res) => {
-  const { id } = req.params;
-  const { role } = req.body;
-
-  try {
-    // Lógica para actualizar el rol del usuario
-    await pool.query("START TRANSACTION");
-    // Actualiza el rol en ambas tablas según sea necesario
-    await pool.query("UPDATE administrador SET role = ? WHERE id = ?", [role, id]);
-    await pool.query("UPDATE usuarios SET role = ? WHERE id = ?", [role, id]);
-    await pool.query("COMMIT");
-
-     // Registro de log
-    const usuario = req.session.usuario;
-    let crearLog = `Actualización de rol de personal para realizada por: ${
-      usuario.username
-    } a las ${new Date().toLocaleString()}`;
-    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-    return res.send(
-      '<script>alert("Actualización de rol realizada correctamente"); window.location="/actualizarRoles";</script>'
-    );
-  } catch (error) {
-    console.error("Error al actualizar el rol del usuario:", error);
-    await pool.query("ROLLBACK");
-    res.status(500).send('Error al actualizar el rol del usuario');
   }
 };
