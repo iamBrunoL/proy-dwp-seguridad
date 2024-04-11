@@ -506,3 +506,31 @@ export const createUsuariosPersonal = async (req, res) => {
     res.redirect("/tableroSupervisor");
   }
 };
+
+
+export const renderModificarRolUsuarios = async (req, res) => {
+  const titulo = "Modificar Rol de Usuarios";
+  try {
+    const [rowsUsuarios] = await pool.query("SELECT * FROM usuarios");
+    const [rowsAdministrador] = await pool.query("SELECT * FROM administrador");
+    res.render("admin/modificarRolUsuarios", {
+      usuarios: rowsUsuarios,
+      administradores: rowsAdministrador,
+      titulo: titulo,
+      message: "Sin resultados encontrados",
+    });
+    // Registro de log
+    const usuario = req.session.usuario;
+    let crearLog = `Actualización de rol de usuarios con id ${id} realizada por: ${
+      usuario.username
+    } a las ${new Date().toLocaleString()}`;
+    pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+    return res.send(
+      '<script>alert("Actualización de rol realizada correctamente"); window.location="/consultaPersonal";</script>'
+    );
+  } catch (error) {
+    console.error("Error al cargar la vista para modificar el rol de usuarios:", error);
+    res.redirect("/error");
+  }
+};
+
