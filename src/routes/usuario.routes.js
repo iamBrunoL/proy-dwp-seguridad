@@ -37,6 +37,7 @@ router.post("/addUsuario", createUsuarios);
 router.get("/personal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderPersonal);
 router.post("/addPersonal", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), createUsuariosPersonal);
 router.post("/updateUsuarioRole/:id", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), updateUsuarioRole);
+router.get("/modificarRolUsuarios/", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderModificarRolUsuarios);
 router.get("/modificarRolUsuarios/:id", setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), renderModificarRolUsuarios);
 
 router.get('/generarPDFUsuarios', setNoCacheHeaders, verificarAutenticacion, verificarRol("Supervisor"), generarPDFUsuarios);
