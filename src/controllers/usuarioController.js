@@ -542,7 +542,7 @@ export const renderConsultaLogs = async (req, res) => {
   const titulo = "Consulta de logs";
   // Registro de log
   const usuario = req.session.usuario;
-  let crearLog = `Consulta de historial de actividades realizada por: ${
+  let crearLog = `Consulta de historial de actividades realizada por el supervisor: ${
     usuario.username
   } a las ${new Date().toLocaleString()}`;
   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
@@ -558,7 +558,7 @@ export const renderConsultaLogs2 = async (req, res) => {
   const titulo = "Consulta de logs";
   // Registro de log
   const usuario = req.session.usuario;
-  let crearLog = `Consulta de historial de actividades realizada por: ${
+  let crearLog = `Consulta de historial de actividades realizada por el administrador: ${
     usuario.username
   } a las ${new Date().toLocaleString()}`;
   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
