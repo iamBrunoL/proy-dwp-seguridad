@@ -47,34 +47,48 @@
 </script>
 
 <script>
-  function validarFormulario() {
-    var formularioValido = true;
+  function validarCorreo() {
     var correo = document.getElementById('email').value;
-    var fechaNacimiento = new Date(document.getElementById('fechaNacimiento').value);
-    var hoy = new Date();
-    var edadMinima = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
     var dominiosValidos = ["hubspot.com", "gmail.com", "protonmail.com", "icloud.com", "zoho.com", "outlook.com", "mailbox.org", "yahoo.com", "bluehost.com", "rackspace.com"];
 
     var dominio = correo.split('@')[1];
 
-    switch (true) {
-      case !dominiosValidos.includes(dominio):
-        alert('Por favor, introduce una dirección de correo electrónico con un dominio válido, por ejemplo: "gmail.com", "outlook.com", "yahoo.com".');
-        formularioValido = false;
-        break;
-      case fechaNacimiento > edadMinima:
-        alert("Debes tener al menos 18 años para registrarte. Por favor, ingresa una fecha válida.");
-        formularioValido = false;
-        break;
-    }
-
-    if (!formularioValido) {
-      event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
+    if (dominiosValidos.includes(dominio)) {
+      return true;
+    } else {
+      alert('Por favor, introduce una dirección de correo electrónico con un dominio válido, por ejemplo: "gmail.com", "outlook.com", "yahoo.com".');
+      return false;
     }
   }
 
-  // Agregar el evento onSubmit al formulario para llamar a la función validarFormulario()
-  document.getElementById('registroForm').addEventListener('submit', validarFormulario);
+  // Agregar el evento onSubmit al formulario para llamar a la función validarCorreo()
+  document.getElementById('registroForm').addEventListener('submit', function(event) {
+    if (!validarCorreo()) {
+      event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
+    }
+  });
+</script>
+
+<script>
+  function validarFechaNacimiento() {
+    var fechaNacimiento = new Date(document.getElementById('fechaNacimiento').value);
+    var hoy = new Date();
+    var edadMinima = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
+
+    if (fechaNacimiento > edadMinima) {
+      alert("Debes tener al menos 18 años para registrarte. Por favor, ingresa una fecha válida.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Agregar el evento onSubmit al formulario para llamar a la función validarFechaNacimiento()
+  document.getElementById('registroForm').addEventListener('submit', function(event) {
+    if (!validarFechaNacimiento()) {
+      event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
+    }
+  });
 </script>
 
 </body>
