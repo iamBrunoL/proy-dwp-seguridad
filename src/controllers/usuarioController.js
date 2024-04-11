@@ -535,3 +535,20 @@ export const createUsuariosPersonal = async (req, res) => {
     res.redirect("/tableroSupervisor");
   }
 };
+
+
+export const renderConsultaLogs = async (req, res) => {
+  const [rows] = await pool.query("SELECT * FROM reportes");
+  const titulo = "Consulta de logs";
+  // Registro de log
+  const usuario = req.session.usuario;
+  let crearLog = `Consulta de historial de actividades realizada por: ${
+    usuario.username
+  } a las ${new Date().toLocaleString()}`;
+  pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+  res.render("supervisor/consultaLogs", {
+    logs: rows,
+    titulo: titulo,
+    message: "Sin resultados encontrados",
+  });
+};
