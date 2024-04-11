@@ -6,7 +6,7 @@ import { renderError } from "../controllers/paginasController.js";
 import {
   renderLogin,
   renderPrincipal,
-  renderEasterEgg,
+  renderDesarrolladores,
   renderTableroUsuario,
   renderTableroAdmin,
   renderTableroSupervisor,
@@ -16,7 +16,7 @@ const router = Router();
 
 
 router.get("/", renderPrincipal);
-router.get("/desarrolladores", renderEasterEgg);
+router.get("/desarrolladores", renderDesarrolladores);
 router.get("/errorAcceso", renderErrorAcceso);
 router.get("/error", renderError);
 router.get("/login", renderLogin);
