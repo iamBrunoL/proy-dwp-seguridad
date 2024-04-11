@@ -552,3 +552,19 @@ export const renderConsultaLogs = async (req, res) => {
     message: "Sin resultados encontrados",
   });
 };
+
+export const renderConsultaLogs2 = async (req, res) => {
+  const [rows] = await pool.query("SELECT * FROM reportes");
+  const titulo = "Consulta de logs";
+  // Registro de log
+  const usuario = req.session.usuario;
+  let crearLog = `Consulta de historial de actividades realizada por: ${
+    usuario.username
+  } a las ${new Date().toLocaleString()}`;
+  pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
+  res.render("admin/consultaLogs", {
+    logs: rows,
+    titulo: titulo,
+    message: "Sin resultados encontrados",
+  });
+};
