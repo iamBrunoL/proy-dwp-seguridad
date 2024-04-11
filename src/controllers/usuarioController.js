@@ -22,6 +22,7 @@ export const renderRegistro = async (req, res) => {
   res.render("registro", { titulo: titulo });
 };
 
+
 export const iniciarSesion = async (req, res) => {
   const { correoUsuario, username, contrasenaUsuario } = req.body;
 
@@ -71,10 +72,21 @@ export const iniciarSesion = async (req, res) => {
 
     req.session.usuario = usuario;
     const nombreHost = req.headers.host;
+
+    // Obtener información del navegador desde el encabezado user-agent
+    const navegador = req.headers['user-agent'];
+    // Extraer el sistema operativo y la versión del agente de usuario
+    const sistemaOperativo = navegador.match(/\(([^)]+)\)/)[1];
+    // Obtener el tipo de dispositivo desde el agente de usuario
+    const tipoDispositivo = navegador.includes("Mobile") ? "Móvil" : "Escritorio";
+
+    // Obtener el tipo de usuario desde la sesión
+    const tipoUsuario = usuario.role;
+
     // Registro de log
-    let crearLog = `Inicio de sesión  del usuario: ${
+    let crearLog = `Inicio de sesión del usuario: ${
       usuario.username
-    } a las ${new Date().toLocaleString()}- Nombre de host: ${nombreHost}`;
+    } a las ${new Date().toLocaleString()} - Nombre de host: ${nombreHost} - Navegador: ${navegador} - Sistema Operativo: ${sistemaOperativo} - Tipo de Dispositivo: ${tipoDispositivo} - Tipo de Usuario: ${tipoUsuario}`;
     pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
     res.redirect(paginaDestino);
   } catch (error) {
@@ -84,12 +96,22 @@ export const iniciarSesion = async (req, res) => {
 };
 
 export const cerrarSesion = (req, res) => {
+  // Obtener información del navegador desde el encabezado user-agent
+  const navegador = req.headers['user-agent'];
+  // Extraer el sistema operativo y la versión del agente de usuario
+  const sistemaOperativo = navegador.match(/\(([^)]+)\)/)[1];
+  // Obtener el tipo de dispositivo desde el agente de usuario
+  const tipoDispositivo = navegador.includes("Mobile") ? "Móvil" : "Escritorio";
+
+  // Obtener el tipo de usuario desde la sesión
+  const tipoUsuario = req.session.usuario.role;
+
   // Registro de log
   const usuario = req.session.usuario;
   const nombreHost = req.headers.host;
   let crearLog = `Cierre de sesión del usuario: ${
     usuario.username
-  } a las ${new Date().toLocaleString()}- Nombre de host: ${nombreHost}`;
+  } a las ${new Date().toLocaleString()} - Nombre de host: ${nombreHost} - Navegador: ${navegador} - Sistema Operativo: ${sistemaOperativo} - Tipo de Dispositivo: ${tipoDispositivo} - Tipo de Usuario: ${tipoUsuario}`;
   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
 
   req.session.destroy((err) => {
@@ -99,6 +121,8 @@ export const cerrarSesion = (req, res) => {
     res.redirect("/login");
   });
 };
+
+
 
 export const renderUsuarios = async (req, res) => {
   const [rows] = await pool.query("SELECT * FROM usuarios");
