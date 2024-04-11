@@ -562,7 +562,7 @@ export const renderConsultaLogs2 = async (req, res) => {
     usuario.username
   } a las ${new Date().toLocaleString()}`;
   pool.query("INSERT INTO reportes (contenido) values (?)", [crearLog]);
-  res.render("admin/consultaLogs", {
+  res.render("admin/consultaLogsAdmin", {
     logs: rows,
     titulo: titulo,
     message: "Sin resultados encontrados",
